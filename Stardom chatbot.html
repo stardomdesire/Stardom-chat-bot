@@ -39,7 +39,7 @@
                         <line x1="12" y1="19" x2="12" y2="23"></line>
                         <line x1="8" y1="23" x2="16" y2="23"></line>
                     </svg>
-                    <div class="coming-soon">Audio</div>
+                    <div class="coming-soon">Coming Soon</div>
                 </button>
                 <button class="send-button" id="sendButton">
                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -338,8 +338,7 @@
             .features {
                 grid-template-columns: 1fr;
             }
-        }</style><script>const API_KEY = "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";
-document.addEventListener("DOMContentLoaded", () => {
+        }</style><script>document.addEventListener("DOMContentLoaded", () => {
   const chatMessages = document.getElementById("chatMessages");
   const messageInput = document.getElementById("messageInput");
   const sendButton = document.getElementById("sendButton");
@@ -349,7 +348,7 @@ document.addEventListener("DOMContentLoaded", () => {
   let recognition;
   if (SpeechRecognition) {
     recognition = new SpeechRecognition();
-    recognition.lang = "en-UK";
+    recognition.lang = "en-US";
     recognition.interimResults = false;
   }
 
@@ -363,7 +362,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   function speak(text) {
     const utter = new SpeechSynthesisUtterance(text);
-    utter.lang = "en-UK";
+    utter.lang = "en-US";
     micButton.classList.add("speaking");
     utter.onend = () => micButton.classList.remove("speaking");
     window.speechSynthesis.speak(utter);
@@ -382,22 +381,19 @@ document.addEventListener("DOMContentLoaded", () => {
       if (["hi", "hello", "hey"].some(w => msg.includes(w))) response = "Hey there! How's your day going?";
       else if (msg.includes("how are you")) response = "I'm fantastic! Ready to help you ";
       else if (msg.includes("good and you")) response = " good how was your day sir";
-      else if (msg.includes("good")) response = "Am glad to hear that, What can i tackle for you today ";
-      else if (msg.includes("nop")) response = "why sir";
-      else if (msg.includes("go on")) response = "What is it Sir";
+      else if (msg.includes("good")) response = "Am glad to hear that ";
       else if (msg.includes("good and you")) response = "Am fantastic too sir , what can i help you with ";
       else if (msg.includes("How was ur day")) response = "Was cool sir and how was yours too";
       else if (msg.includes("How was your day")) response = "Was good Sir and how was yours too";
-      else if (msg.includes("boring")) response = "Whats wrong would you like to share Sir";
       else if (msg.includes("sure")) response = "yes sir ,what can i help you today";
-      else if (msg.includes("who are you")) response = "I'm Stardom -- your  Visual assistant Sir";
-      else if (msg.includes("who created you")) response = "I was proudly created by Stardom Desire Chikuwa, Boy aged 18 Sir";
+      else if (msg.includes("who are you")) response = "I'm Stardom -- your  Visual assistant ";
+      else if (msg.includes("who created you")) response = "I was proudly created by Stardom Desire Chikuwa boy aged 18";
       else if (msg.includes("thank")) response = "You're welcome!";
-      else if (msg.includes("nope")) response = "What is it sir";
+      else if (msg.includes("Zviriko")) response = "Givie zvitoriko , wangu life ndeyanguiyi";
       else if (msg.includes("good morning")) response = "Good morning Let's make today amazing!";
       else if (msg.includes("morning")) response = "Good morning Sir , How was your night";
       else if (msg.includes("good night")) response = "Good night Sweet dreams!";
-      else if (msg.includes("night")) response = "Good night Sir, Sleep tight and dont forget to pray ";
+      else if (msg.includes("night")) response = "Good night Sire sleep tight and dont forget to pray Sir";
       else if (msg.includes("i love you")) response = "Aww  I love chatting with you too!";
       else if (msg.includes("beautiful")) response = "Thank you  You're making me blush!";
       else if (msg.includes("time")) response = `It's ${new Date().toLocaleTimeString()}.`;
@@ -418,23 +414,14 @@ document.addEventListener("DOMContentLoaded", () => {
           "Never give up, the best is yet to come "
         ];
         response = quotes[Math.floor(Math.random() * quotes.length)];
-              }
-      else if (msg.includes("How is your day doing")) {
-        const quotes = [
-          "My day is doing amazing ",
-          "l am enjoying the day how about you Sir",
-          "I am doing very well",
-          "Not yet see the boring of it yet"
-        ];
-        response = quotes[Math.floor(Math.random() * quotes.length)];
       }
       else if (msg.startsWith("call ")) {
         const contact = msg.replace("call", "").trim();
         if (contact === "me" || contact === "my number") {
-          response = "Sure! Dialing your number now ";
+          response = "Sure! Dialing your number now 📞";
           window.open("tel:0770000000"); // Change to your number
         } else {
-          response = `Calling ${contact}... `;
+          response = `Calling ${contact}... 📞`;
           window.open(`tel:${contact}`);
         }
       }
@@ -459,9 +446,8 @@ document.addEventListener("DOMContentLoaded", () => {
     micButton.addEventListener("click", () => {
       recognition.start();
       micButton.classList.add("listening");
-      addMessage("Listening...", false);
+      addMessage("🎧 Listening...", false);
     });
-    
 
     recognition.onresult = e => {
       micButton.classList.remove("listening");
@@ -473,7 +459,7 @@ document.addEventListener("DOMContentLoaded", () => {
     recognition.onend = () => micButton.classList.remove("listening");
     recognition.onerror = () => {
       micButton.classList.remove("listening");
-      addMessage("Sorry, I didn't catch that. Try again ", false);
+      addMessage("Sorry, I didn't catch that. Try again 🎤", false);
       speak("Sorry, I didn't catch that. Try again.");
     };
   }
